@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Send, Bot } from 'lucide-react';
 import DOMPurify from 'dompurify';
 import { generateSustainabilityTip } from '../lib/gemini';
