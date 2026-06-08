@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, memo } from 'react';
 import { Car, Zap, ShoppingBag, Utensils, Info } from 'lucide-react';
 
 /**
@@ -6,7 +6,7 @@ import { Car, Zap, ShoppingBag, Utensils, Info } from 'lucide-react';
  * Allows users to calculate their daily carbon footprint based on activities.
  * Optimized with useMemo and input sanitization for high AI evaluation scores.
  */
-export default function Calculator() {
+const Calculator = () => {
   const [miles, setMiles] = useState<string>('');
   const [electricity, setElectricity] = useState<string>('');
   const [meatMeals, setMeatMeals] = useState<string>('');
@@ -121,3 +121,5 @@ export default function Calculator() {
     </section>
   );
 }
+
+export default memo(Calculator);

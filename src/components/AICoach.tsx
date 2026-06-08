@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { Send, Bot } from 'lucide-react';
 import DOMPurify from 'dompurify';
 import { generateSustainabilityTip } from '../lib/gemini';
@@ -17,7 +17,7 @@ interface Message {
  * Communicates with Gemini API.
  * Uses DOMPurify to sanitize AI outputs for high Security score.
  */
-export default function AICoach() {
+const AICoach = () => {
   const [messages, setMessages] = useState<Message[]>([
     { id: '1', text: 'Hi! I am your EcoSync AI Coach. I noticed you logged a lot of driving yesterday. How can I help you reduce your footprint today?', sender: 'ai' }
   ]);
@@ -99,3 +99,5 @@ export default function AICoach() {
     </section>
   );
 }
+
+export default memo(AICoach);

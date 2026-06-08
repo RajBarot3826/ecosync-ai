@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Trophy, Flame, Leaf } from 'lucide-react';
 
@@ -24,7 +24,7 @@ const mockData: EmissionData[] = [
  * Dashboard Component
  * Displays the Real-Time Carbon Score, charts, and AI Twin status.
  */
-export default function Dashboard() {
+const Dashboard = () => {
   const [score, setScore] = useState<number>(785);
 
   useEffect(() => {
@@ -105,3 +105,5 @@ export default function Dashboard() {
     </section>
   );
 }
+
+export default memo(Dashboard);

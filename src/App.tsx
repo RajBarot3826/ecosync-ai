@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, memo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
@@ -7,12 +7,19 @@ const LandingPage = React.lazy(() => import('./components/LandingPage'));
 const Dashboard = React.lazy(() => import('./components/Dashboard'));
 const Calculator = React.lazy(() => import('./components/Calculator'));
 const AICoach = React.lazy(() => import('./components/AICoach'));
+const Rewards = React.lazy(() => import('./components/Rewards'));
+const Community = React.lazy(() => import('./components/Community'));
+const Challenges = React.lazy(() => import('./components/Challenges'));
+const TreeImpact = React.lazy(() => import('./components/TreeImpact'));
+const SmartHome = React.lazy(() => import('./components/SmartHome'));
+const TravelPlanner = React.lazy(() => import('./components/TravelPlanner'));
 
 /**
  * Main Application Routing Component
  * Implements React.lazy and Suspense for optimal bundle splitting.
+ * Wrapped in React.memo for extreme performance.
  */
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />
@@ -23,11 +30,17 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/coach" element={<AICoach />} />
+            <Route path="/rewards" element={<Rewards />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/challenges" element={<Challenges />} />
+            <Route path="/tree" element={<TreeImpact />} />
+            <Route path="/smarthome" element={<SmartHome />} />
+            <Route path="/travel" element={<TravelPlanner />} />
           </Routes>
         </main>
       </Suspense>
     </Router>
   );
-}
+};
 
-export default App;
+export default memo(App);

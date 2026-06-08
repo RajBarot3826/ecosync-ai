@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, Activity, Globe } from 'lucide-react';
 
@@ -6,7 +6,7 @@ import { ArrowRight, Leaf, Activity, Globe } from 'lucide-react';
  * Landing Page Component
  * Introduces the platform to users. Highly accessible semantic HTML.
  */
-export default function LandingPage() {
+const LandingPage = () => {
   return (
     <section className="container mt-4" aria-labelledby="landing-heading">
       <header className="text-center animate-float">
@@ -54,3 +54,5 @@ export default function LandingPage() {
     </section>
   );
 }
+
+export default memo(LandingPage);
