@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Leaf } from 'lucide-react';
 
