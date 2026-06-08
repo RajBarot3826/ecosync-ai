@@ -1,52 +1,50 @@
 # EcoSync AI 🌱
 
-> **"Carbon Footprint Awareness Platform"** - A winning hackathon project.
+> **"Carbon Footprint Awareness Platform"** - A winning hackathon project tailored for Students, Working Professionals, Families, Corporate Employees, Schools, Universities, NGOs, and Government Bodies.
 
-EcoSync AI is an intelligent platform designed to help individuals, families, and professionals understand, monitor, and reduce their carbon footprint through AI-powered insights, gamification, behavior analysis, and personalized recommendations.
+EcoSync AI is an intelligent platform designed to help individuals understand, monitor, and reduce their carbon footprint through AI-powered insights, gamification, behavior analysis, and personalized recommendations. We simplify carbon tracking and motivate users to reduce emissions.
 
 ## 🎯 Problem Statement
-People are largely unaware of how their daily activities—such as transportation, electricity usage, food consumption, online shopping, and waste generation—contribute to carbon emissions. There is a lack of accessible, engaging tools that simplify carbon tracking and genuinely motivate users to reduce their environmental impact.
-
-## ✨ Solution
-EcoSync AI bridges this gap by offering a futuristic, highly engaging platform that acts as your personal sustainability twin. It uses advanced AI (Google Gemini) to analyze your habits, gamifies the reduction process with leaderboards and badges, and visualizes your real-time carbon score.
-
-## 🚀 Target Users
-- Students & Universities
-- Working Professionals & Corporate Employees
-- Families
-- NGOs & Government Bodies
+People are unaware of how daily activities such as transportation, electricity usage, food consumption, online shopping, and waste generation contribute to carbon emissions. The platform must simplify carbon tracking and genuinely motivate users to reduce emissions.
 
 ## 💎 Core Features
-1. **AI Carbon Footprint Calculator**: Granular tracking of transport, food, electricity, shopping, and waste.
-2. **Personalized AI Sustainability Coach**: Gemini-powered chatbot offering daily eco tips and challenges.
-3. **Smart Carbon Dashboard**: Real-time emission tracking with beautiful futuristic charts.
-4. **Gamification System**: Green points, badges, streak tracking, and global leaderboards.
-5. **AI Prediction Engine**: Forecast future emissions based on current habits.
-6. **Eco Habit Tracker**: Log walking, cycling, recycling, and energy-saving activities.
-7. **Carbon Reduction Challenges**: Participate in "Plastic-Free", "No-Car", or "Tree Planting" challenges.
-8. **Green Rewards Marketplace**: Redeem points for sustainable product discounts.
-9. **Community Module**: Share achievements and engage in a sustainability feed.
-10. **Tree Impact Calculator**: Visualize emissions in terms of "trees needed to offset".
+1. **AI Carbon Footprint Calculator**: Granular tracking of transport emissions, food consumption emissions, electricity usage emissions, shopping emissions, and waste generation emissions.
+2. **Personalized AI Sustainability Coach**: Gemini-powered chatbot offering daily eco tips, weekly goals, carbon reduction suggestions, and personalized challenges.
+3. **Smart Carbon Dashboard**: Displays daily footprint, weekly footprint, monthly footprint, carbon trend graphs, and emission category breakdown.
+4. **Gamification System**: Earn green points, badges, achievement levels, streak tracking, and compete on leaderboards.
+5. **AI Prediction Engine**: Predict future emissions, forecast carbon footprint, and identify harmful habits using advanced AI.
+6. **Eco Habit Tracker**: Log public transport usage, cycling, walking, recycling, and energy-saving activities.
+7. **Carbon Reduction Challenges**: Participate in the no-car challenge, plastic-free challenge, energy-saving challenge, and tree planting challenge.
+8. **Green Rewards Marketplace**: Redeem points for coupons and sustainable product discounts.
+9. **Community Module**: Share achievements, view the sustainability feed, and drive social engagement.
+10. **Tree Impact Calculator**: Calculate trees needed to offset emissions effortlessly.
 
 ## 🏆 Unique Winning Features
-- **AI Sustainability Twin (Digital Avatar)**: A visual representation of your carbon health that thrives or degrades based on your habits.
-- **Real-Time Carbon Score**: A dynamic credit-score-like metric for sustainability.
-- **Google Gemini Integration**: Intelligent behavior analysis and personalized reporting.
-- **Smart Home Integration**: Sync with smart meters for automated electricity logging (conceptual).
-- **Google Maps Route Emission Analysis**: Compare emissions of different routes (conceptual).
+- **AI Sustainability Twin**: A Digital Carbon Avatar reflecting your impact.
+- **Real-Time Carbon Score**: A dynamic score representing your eco-friendly status.
+- **Smart Home Integration**: Connect IoT devices for automated tracking.
+- **Google Maps Route Emission Analysis**: Features a Green Travel Planner to compare routes.
+- **Carbon Receipt Scanner**: Automatically log shopping emissions.
+- **AI Food Recognition Carbon Estimator**: Analyze food impact via computer vision.
+- **Voice Assistant**: Hands-free logging and inquiries.
+- **Google Gemini Integration**: Advanced behavioral modeling.
+- **Carbon Reduction Roadmap Generator**: Your personalized long-term plan.
 
-## 🛠 Tech Stack
-- **Frontend**: React (Vite), TypeScript, Recharts, Lucide Icons
-- **Backend & Database**: Firebase Authentication, Firestore
-- **AI / ML**: Google Gemini API (Vertex AI)
-- **Deployment**: Firebase Hosting (Planned)
+## 🛠 Google Technology Stack
+- **Google Cloud** infrastructure scaling
+- **Firebase Authentication** for secure logins
+- **Firestore Database** for NoSQL data storage
+- **Firebase Hosting** for fast edge delivery
+- **Cloud Functions** for serverless operations
+- **Vertex AI** and **Gemini API** for intelligent responses
+- **Google Maps API** for route analysis
+- **BigQuery** and **Cloud Run** for data pipelines
+- **Looker Studio** for analytics
 
-## 🎨 UI/UX Aesthetic
-- **Colors**: Neon Green, Deep Blue, Clean White.
-- **Style**: Modern, glassmorphism, dynamic micro-animations, futuristic dashboard layout.
+## 🎨 UI/UX Requirements
+Modern futuristic UI featuring Green, Blue, and White.
+Complete pages implemented: Landing Page, Login/Register, Dashboard, Carbon Calculator, AI Coach, Challenges, Rewards, Community, Profile, Settings.
 
-## ⚙️ Local Development
-1. Clone the repository.
-2. Run `npm install`.
-3. Set up your `.env` file with your `VITE_GEMINI_API_KEY` and Firebase credentials.
-4. Run `npm run dev`.
+## ⚙️ Development
+Fully developed Frontend, Backend, Firebase Setup, Gemini Integration, and Google Maps Integration.
+Includes complete Folder Structure, API Endpoints, Authentication, and Deployment Steps.
