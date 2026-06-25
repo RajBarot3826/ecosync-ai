@@ -1,16 +1,18 @@
-import React, { useState, useMemo, useCallback, memo } from 'react';
+import { useState, useMemo, useCallback, memo } from 'react';
 import { Car, Zap, ShoppingBag, Utensils, Info } from 'lucide-react';
+import { addLog, getCarbonScore, setCarbonScore } from '../lib/state';
 
 /**
  * Carbon Calculator Component
  * Allows users to calculate their daily carbon footprint based on activities.
- * Optimized with useMemo and input sanitization for high AI evaluation scores.
+ * Connects calculation output to the shared weekly log.
  */
 const Calculator = () => {
   const [miles, setMiles] = useState<string>('');
   const [electricity, setElectricity] = useState<string>('');
   const [meatMeals, setMeatMeals] = useState<string>('');
   const [isCalculated, setIsCalculated] = useState<boolean>(false);
+  const [saveSuccess, setSaveSuccess] = useState<boolean>(false);
 
   // Security: Strict validation function
   const sanitizeInput = (val: string): number => {
@@ -32,7 +34,30 @@ const Calculator = () => {
   const handleCalculate = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setIsCalculated(true);
+    setSaveSuccess(false);
   }, []);
+
+  const handleSaveToDashboard = useCallback(() => {
+    if (result === null) return;
+    
+    // Find current day name (Mon, Tue, etc.)
+    const dayName = new Date().toLocaleDateString('en-US', { weekday: 'short' });
+    addLog(dayName, result);
+    
+    // Adjust Carbon Score based on emissions: low emissions increase score, high emissions decrease it
+    const currentScore = getCarbonScore();
+    let scoreChange = 0;
+    if (result < 15) {
+      scoreChange = 15; // Low carbon day! Bonus points
+    } else if (result > 30) {
+      scoreChange = -20; // High carbon day! Penalty
+    } else {
+      scoreChange = 5;
+    }
+    
+    setCarbonScore(Math.max(300, Math.min(1000, currentScore + scoreChange)));
+    setSaveSuccess(true);
+  }, [result]);
 
   return (
     <section className="container mt-2" aria-labelledby="calc-heading">
@@ -55,7 +80,7 @@ const Calculator = () => {
                 className="form-control" 
                 placeholder="e.g. 15"
                 value={miles}
-                onChange={(e) => { setMiles(e.target.value); setIsCalculated(false); }}
+                onChange={(e) => { setMiles(e.target.value); setIsCalculated(false); setSaveSuccess(false); }}
                 aria-required="false"
               />
             </div>
@@ -71,7 +96,7 @@ const Calculator = () => {
                 className="form-control" 
                 placeholder="e.g. 10"
                 value={electricity}
-                onChange={(e) => { setElectricity(e.target.value); setIsCalculated(false); }}
+                onChange={(e) => { setElectricity(e.target.value); setIsCalculated(false); setSaveSuccess(false); }}
                 aria-required="false"
               />
             </div>
@@ -87,7 +112,7 @@ const Calculator = () => {
                 className="form-control" 
                 placeholder="e.g. 2"
                 value={meatMeals}
-                onChange={(e) => { setMeatMeals(e.target.value); setIsCalculated(false); }}
+                onChange={(e) => { setMeatMeals(e.target.value); setIsCalculated(false); setSaveSuccess(false); }}
                 aria-required="false"
               />
             </div>
@@ -107,13 +132,28 @@ const Calculator = () => {
           ) : (
             <div className="animate-float">
               <h3 style={{ marginBottom: '1rem' }}>Today's Est. Footprint</h3>
-              <div style={{ fontSize: '4rem', fontWeight: 800, color: 'var(--danger)', lineHeight: 1, textShadow: '0 0 20px rgba(255, 71, 87, 0.4)' }}>
+              <div style={{ fontSize: '4rem', fontWeight: 800, color: result > 25 ? 'var(--danger)' : 'var(--primary)', lineHeight: 1, textShadow: result > 25 ? '0 0 20px rgba(255, 71, 87, 0.4)' : '0 0 20px rgba(0, 255, 136, 0.4)' }}>
                 {result.toFixed(1)} <span style={{ fontSize: '1.5rem' }}>kg CO2</span>
               </div>
-              <p style={{ marginTop: '2rem', color: 'var(--text-muted)' }}>
-                That's equivalent to charging {Math.round(result * 121)} smartphones. <br/>
-                Talk to the <strong>AI Coach</strong> for reduction strategies!
+              <p style={{ marginTop: '1.5rem', color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+                Equivalent to charging {Math.round(result * 121)} smartphones.
               </p>
+              
+              <div style={{ marginTop: '2rem' }}>
+                {saveSuccess ? (
+                  <div style={{ color: 'var(--primary)', fontWeight: 600 }} aria-live="assertive">
+                    Saved successfully to your Carbon Hub! 🌱
+                  </div>
+                ) : (
+                  <button 
+                    onClick={handleSaveToDashboard} 
+                    className="btn-outline" 
+                    style={{ fontSize: '0.95rem', padding: '0.6rem 1.5rem' }}
+                  >
+                    Save to Dashboard Log
+                  </button>
+                )}
+              </div>
             </div>
           )}
         </article>
