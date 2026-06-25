@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { Heart, MessageSquare, Send, Share2, Award, User } from 'lucide-react';
 import { getPosts, updatePosts } from '../lib/state';
 import type { Post } from '../lib/state';
@@ -8,14 +8,10 @@ import type { Post } from '../lib/state';
  * Fulfills the hackathon requirement: "Community Module"
  */
 const Community = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<Post[]>(() => getPosts());
   const [newPostText, setNewPostText] = useState<string>('');
   const [newPostSavings, setNewPostSavings] = useState<string>('');
   const [commentInputs, setCommentInputs] = useState<{ [postId: string]: string }>({});
-
-  useEffect(() => {
-    setPosts(getPosts());
-  }, []);
 
   const handleCreatePost = (e: React.FormEvent) => {
     e.preventDefault();

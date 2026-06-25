@@ -46,14 +46,7 @@ const Calculator = () => {
     
     // Adjust Carbon Score based on emissions: low emissions increase score, high emissions decrease it
     const currentScore = getCarbonScore();
-    let scoreChange = 0;
-    if (result < 15) {
-      scoreChange = 15; // Low carbon day! Bonus points
-    } else if (result > 30) {
-      scoreChange = -20; // High carbon day! Penalty
-    } else {
-      scoreChange = 5;
-    }
+    const scoreChange = result < 15 ? 15 : result > 30 ? -20 : 5;
     
     setCarbonScore(Math.max(300, Math.min(1000, currentScore + scoreChange)));
     setSaveSuccess(true);

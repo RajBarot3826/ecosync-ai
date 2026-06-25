@@ -47,19 +47,26 @@ const DEFAULT_REWARDS: RewardItem[] = [
   }
 ];
 
+const generatePromoCode = (): string => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let promoCode = 'ECO-';
+  for (let i = 0; i < 8; i++) {
+    if (i === 4) promoCode += '-';
+    promoCode += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return promoCode;
+};
+
 /**
  * Green Rewards Marketplace Component
  * Fulfills the hackathon requirement: "Green Rewards Marketplace"
  */
 const Rewards = () => {
-  const [points, setPointsState] = useState<number>(0);
-  const [rewards, setRewards] = useState<RewardItem[]>([]);
+  const [points, setPointsState] = useState<number>(() => getPoints());
+  const [rewards, setRewards] = useState<RewardItem[]>(DEFAULT_REWARDS);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    setPointsState(getPoints());
-    setRewards(DEFAULT_REWARDS);
-
     const syncPoints = () => setPointsState(getPoints());
     window.addEventListener('storage_update', syncPoints);
     return () => window.removeEventListener('storage_update', syncPoints);
@@ -76,13 +83,7 @@ const Rewards = () => {
     setPointsState(newPoints);
     setPoints(newPoints);
 
-    // Generate a unique coupon code
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let promoCode = 'ECO-';
-    for (let i = 0; i < 8; i++) {
-      if (i === 4) promoCode += '-';
-      promoCode += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
+    const promoCode = generatePromoCode();
 
     setRewards(prev => prev.map(item => {
       if (item.id === id) {

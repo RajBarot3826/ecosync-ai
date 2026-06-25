@@ -1,11 +1,12 @@
 import { useState, useMemo, memo } from 'react';
 import { Compass, Car, Train, Bike, Sparkles, Navigation } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { getPoints, setPoints } from '../lib/state';
 
 interface RouteOption {
   id: string;
   mode: string;
-  icon: any;
+  icon: LucideIcon;
   time: string;
   co2: number;
   color: string;

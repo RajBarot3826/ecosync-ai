@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { Leaf, Plus, Sparkles } from 'lucide-react';
 import { getTreesPlanted, setTreesPlanted, getPoints, setPoints } from '../lib/state';
 
@@ -7,13 +7,9 @@ import { getTreesPlanted, setTreesPlanted, getPoints, setPoints } from '../lib/s
  * Fulfills the hackathon requirement: "Tree Impact Calculator"
  */
 const TreeImpact = () => {
-  const [trees, setTrees] = useState<number>(3);
+  const [trees, setTrees] = useState<number>(() => getTreesPlanted());
   const [emissions, setEmissions] = useState<number>(110); // Default weekly average
   const [justPlanted, setJustPlanted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setTrees(getTreesPlanted());
-  }, []);
 
   const treesNeeded = Math.ceil(emissions / 22); // A mature tree absorbs 22kg CO2/year
 

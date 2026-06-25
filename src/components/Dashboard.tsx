@@ -11,10 +11,10 @@ import type { LogEntry } from '../lib/state';
  * Synced with live localStorage state.
  */
 const Dashboard = () => {
-  const [score, setScore] = useState<number>(785);
-  const [points, setPoints] = useState<number>(2450);
-  const [streak, setStreak] = useState<number>(12);
-  const [logs, setLogs] = useState<LogEntry[]>([]);
+  const [score, setScore] = useState<number>(() => getCarbonScore());
+  const [points, setPoints] = useState<number>(() => getPoints());
+  const [streak, setStreak] = useState<number>(() => getStreak());
+  const [logs, setLogs] = useState<LogEntry[]>(() => getLogs());
 
   const loadState = () => {
     setScore(getCarbonScore());
@@ -24,8 +24,6 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    loadState();
-    
     // Add custom event listener for state updates across other components
     window.addEventListener('storage_update', loadState);
     return () => {

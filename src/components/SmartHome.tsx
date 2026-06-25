@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { ToggleLeft, ToggleRight, Info, Zap, Shield, HelpCircle } from 'lucide-react';
 import { getDevices, updateDevices, getPoints, setPoints } from '../lib/state';
 import type { Device } from '../lib/state';
@@ -8,11 +8,7 @@ import type { Device } from '../lib/state';
  * Fulfills the hackathon requirement: "Smart Home Integration"
  */
 const SmartHome = () => {
-  const [devices, setDevices] = useState<Device[]>([]);
-
-  useEffect(() => {
-    setDevices(getDevices());
-  }, []);
+  const [devices, setDevices] = useState<Device[]>(() => getDevices());
 
   const handleToggle = (id: string) => {
     const updated = devices.map(d => {

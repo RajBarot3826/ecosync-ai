@@ -4,11 +4,13 @@ import Dashboard from './Dashboard';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import type { ReactNode } from 'react';
+
 // Mock Recharts to prevent errors in JSDOM
 vi.mock('recharts', () => {
   return {
-    ResponsiveContainer: ({ children }: any) => <div>{children}</div>,
-    LineChart: ({ children }: any) => <div>{children}</div>,
+    ResponsiveContainer: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
+    LineChart: ({ children }: { children?: ReactNode }) => <div>{children}</div>,
     CartesianGrid: () => <div>CartesianGrid</div>,
     XAxis: () => <div>XAxis</div>,
     YAxis: () => <div>YAxis</div>,

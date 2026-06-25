@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { ShieldCheck, Award } from 'lucide-react';
 import { getChallenges, updateChallenges, getPoints, setPoints, getCarbonScore, setCarbonScore } from '../lib/state';
 
@@ -19,11 +19,7 @@ interface Challenge {
  * Fulfills the hackathon requirement: "Carbon Reduction Challenges"
  */
 const Challenges = () => {
-  const [challenges, setChallenges] = useState<Challenge[]>([]);
-
-  useEffect(() => {
-    setChallenges(getChallenges());
-  }, []);
+  const [challenges, setChallenges] = useState<Challenge[]>(() => getChallenges());
 
   const handleJoin = (id: string) => {
     const updated = challenges.map(ch => {
