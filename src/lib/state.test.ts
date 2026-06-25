@@ -8,8 +8,7 @@ import {
   setStreak, 
   getLogs, 
   addLog, 
-  getChallenges, 
-  updateChallenges,
+  getChallenges,
   getTreesPlanted,
   setTreesPlanted
 } from './state';
